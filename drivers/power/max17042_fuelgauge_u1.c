@@ -338,7 +338,7 @@ static void max17042_get_soc(struct i2c_client *client)
 		if (max17042_read_reg(client, MAX17042_REG_SOC_VF, data) < 0)
 			return;
 #ifndef PRODUCT_SHIP
-		dev_info(&chip->client->dev, "%s : soc(%02x%02x)\n",
+		dev_dbg(&chip->client->dev, "%s : soc(%02x%02x)\n",
 				__func__, data[1], data[0]);
 #endif
 		soc = (data[1] * 100) + (data[0] * 100 / 256);
@@ -414,7 +414,7 @@ static void max17042_get_soc(struct i2c_client *client)
 	chip->soc = soc;
 
 #ifndef PRODUCT_SHIP
-	dev_info(&client->dev, "%s : use raw (%d), soc (%d)\n",
+	dev_dbg(&client->dev, "%s : use raw (%d), soc (%d)\n",
 		__func__, chip->raw_soc, soc);
 #endif
 }
@@ -516,7 +516,7 @@ static void max17042_work(struct work_struct *work)
 			dev_info(&chip->client->dev,
 				"fuel alert already activated (raw:%d)\n",
 				chip->raw_soc);
-	} else if (chip->raw_soc == chip->fuel_alert_soc) {
+	} else if (chip->raw_soc >= chip->fuel_alert_soc) {
 		if (chip->is_fuel_alerted) {
 			wake_unlock(&chip->fuel_alert_wake_lock);
 			chip->is_fuel_alerted = false;

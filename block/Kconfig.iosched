@@ -71,6 +71,17 @@ config IOSCHED_ROW
 	  according to queue priority.
 	  Most suitable for mobile devices.
 
+config IOSCHED_ROW
+ 	 tristate "ROW I/O scheduler"
+ 	 default y
+ 	 ---help---
+ 	   The ROW I/O scheduler gives priority to READ requests over the
+ 	   WRITE requests when dispatching, without starving WRITE requests.
+ 	   Requests are kept in priority queues. Dispatching is done in a RR
+ 	   manner when the dispatch quantum for each queue is calculated
+ 	   according to queue priority.
+ 	   Most suitable for mobile devices.
+
 choice
 	prompt "Default I/O scheduler"
 	default DEFAULT_CFQ
@@ -113,6 +124,7 @@ config DEFAULT_IOSCHED
 	default "sio" if DEFAULT_SIO
 	default "vr" if DEFAULT_VR
 	default "noop" if DEFAULT_NOOP
+	default "row" if DEFAULT_ROW
 
 endmenu
 

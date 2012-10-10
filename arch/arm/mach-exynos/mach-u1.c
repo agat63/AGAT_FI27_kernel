@@ -2313,7 +2313,7 @@ static struct lcd_platform_data ld9040_platform_data = {
 	/* it indicates whether lcd panel is enabled from u-boot. */
 	.lcd_enabled = 1,
 	.reset_delay = 20,	/* 10ms */
-	.power_on_delay = 50,	/* 40ms */
+	.power_on_delay = 20,	/* 20ms */
 
 #ifdef CONFIG_TARGET_LOCALE_NAATT_TEMP
 	.power_off_delay = 150,	/* 120ms */
@@ -2734,8 +2734,8 @@ static struct regulator_init_data buck2_init_data = {
 static struct regulator_init_data buck3_init_data = {
 	.constraints	= {
 		.name		= "G3D_1.1V",
-		.min_uV		= 900000,
-		.max_uV		= 1200000,
+		.min_uV		= 800000,
+		.max_uV		= 1400000,
 		.always_on	= 0,
 		.boot_on	= 0,
 		.apply_uV	= 1,
@@ -3500,7 +3500,7 @@ void sec_set_ldo1_constraints(int disabled)
 static struct mc1n2_platform_data mc1n2_pdata = {
 	.set_main_mic_bias = sec_set_main_mic_bias,
 	.set_sub_mic_bias = sec_set_sub_mic_bias,
-	.set_adc_power_contraints = sec_set_ldo1_constraints,
+	.set_adc_power_constraints = sec_set_ldo1_constraints,
 };
 
 static void u1_sound_init(void)
@@ -4727,8 +4727,8 @@ static void mxt224_power_off(void)
   Configuration for MXT224
 */
 #define MXT224_THRESHOLD_BATT		40
-#define MXT224_THRESHOLD_BATT_INIT		55
-#define MXT224_THRESHOLD_CHRG		70
+#define MXT224_THRESHOLD_BATT_INIT		50
+#define MXT224_THRESHOLD_CHRG		55
 #ifndef CONFIG_TARGET_LOCALE_KOR
 #define MXT224_NOISE_THRESHOLD_BATT		15
 #define MXT224_NOISE_THRESHOLD_CHRG		40
@@ -4736,7 +4736,7 @@ static void mxt224_power_off(void)
 #define MXT224_NOISE_THRESHOLD_BATT		30
 #define MXT224_NOISE_THRESHOLD_CHRG		40
 #endif
-#define MXT224_MOVFILTER_BATT		47
+#define MXT224_MOVFILTER_BATT		11
 #define MXT224_MOVFILTER_CHRG		47
 #define MXT224_ATCHCALST		4
 #define MXT224_ATCHCALTHR		35
