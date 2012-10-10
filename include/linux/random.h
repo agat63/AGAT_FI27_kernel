@@ -96,11 +96,11 @@ static inline void prandom32_seed(struct rnd_state *state, u64 seed)
 #else
 static inline int arch_get_random_long(unsigned long *v)
 {
-  return 0;
+	return 0;
 }
 static inline int arch_get_random_int(unsigned int *v)
 {
-  return 0;
+	return 0;
 }
 #endif
 

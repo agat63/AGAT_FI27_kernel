@@ -76,10 +76,11 @@ int wm831x_otp_init(struct wm831x *wm831x)
 			ret);
 
 	ret = wm831x_unique_id_read(wm831x, uuid);
- 	if (ret == 0)
- 	  add_device_randomness(uuid, sizeof(uuid));
- 	else
- 	  dev_err(wm831x->dev, "Failed to read UUID: %d\n", ret);
+	if (ret == 0)
+		add_device_randomness(uuid, sizeof(uuid));
+	else
+		dev_err(wm831x->dev, "Failed to read UUID: %d\n", ret);
+
 	return ret;
 }
 

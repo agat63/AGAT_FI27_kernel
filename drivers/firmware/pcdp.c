@@ -131,7 +131,6 @@ efi_setup_pcdp_console(char *cmdline)
 	}
 
 out:
-	iounmap(pcdp);
 	early_iounmap(pcdp, 4096);
 	return rc;
 }

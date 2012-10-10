@@ -232,7 +232,8 @@ static inline void
 vivt_flush_cache_page(struct vm_area_struct *vma, unsigned long user_addr, unsigned long pfn)
 {
 	struct mm_struct *mm = vma->vm_mm;
- 	if (!mm || cpumask_test_cpu(smp_processor_id(), mm_cpumask(mm))) {
+
+	if (!mm || cpumask_test_cpu(smp_processor_id(), mm_cpumask(mm))) {
 		unsigned long addr = user_addr & PAGE_MASK;
 		__cpuc_flush_user_range(addr, addr + PAGE_SIZE, vma->vm_flags);
 	}
