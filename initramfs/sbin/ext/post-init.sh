@@ -53,7 +53,7 @@ if [ "${logger}" == "on" ];then
   insmod /lib/modules/logger.ko
 else
   ## disable debugging on some modules
-  rm -rf /dev/log
+  # rm -rf /dev/log
   echo 0 > /sys/module/ump/parameters/ump_debug_level
   echo 0 > /sys/module/mali/parameters/mali_debug_level
   echo 0 > /sys/module/kernel/parameters/initcall_debug

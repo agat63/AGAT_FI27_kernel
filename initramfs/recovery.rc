@@ -18,7 +18,7 @@ on init
     mkdir /preload
     mkdir /tmp
     mkdir /mnt 0775 root root
-    mount /tmp /tmp tmpfs
+	mount /tmp /tmp tmpfs
 
 on fs
     mount ext4 /dev/block/mmcblk0p9 /system noatime wait
